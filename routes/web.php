@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\controllers\dashboard\PostController;
 use App\Http\controllers\dashboard\CategoryController;
+use App\Http\controllers\dashboard\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,10 +33,11 @@ Route::get('home/{nombre?}/{apellido?}', function($nombre= "Pepe") {
 
 Route::group(['prefix' => 'dashboard'], function() {
    
-
        Route::resource('post', PostController::class);
        
        Route::resource('category', CategoryController::class);
+       
+       Route::resource('user', UserController::class);
     });
 
 
@@ -44,3 +46,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::post('dashboard/post/{post}/image', [App\Http\Controllers\dashboard\PostController::class, 'image'])->name('post.image');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

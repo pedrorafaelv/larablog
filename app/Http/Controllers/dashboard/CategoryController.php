@@ -15,6 +15,11 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware(['auth', 'rol.admin']);
+    } 
+    
     public function index()
     {
         $categories = Category::orderBy('created_at', 'desc')->paginate(4);
